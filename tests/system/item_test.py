@@ -77,7 +77,7 @@ class ItemTest(BaseTest):
 
                 self.assertEqual(r.status_code, 200)
                 self.assertEqual(ItemModel.find_by_name('test').price, 17.99)
-                self.assertDictEqual(d1={'name': 'test', 'price': 17.99},
+                self.assertDictEqual(d1={'id':1,'name': 'test', 'price': 17.99},
                                      d2=json.loads(r.data))
 
     def test_put_update_item(self):
@@ -85,7 +85,7 @@ class ItemTest(BaseTest):
             with self.app_context():
                 StoreModel('test').save_to_db()
                 c.put('/item/test', data={'price': 17.99, 'store_id': 1})
-                r = c.put('/item/test', data={'price': 18.99, 'store_id': 1})
+                r = c.put('/item/test', data={'price': 17.99, 'store_id': 1})
 
                 self.assertEqual(r.status_code, 200)
                 self.assertEqual(ItemModel.find_by_name('test').price, 18.99)
