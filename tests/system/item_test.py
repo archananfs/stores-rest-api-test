@@ -57,7 +57,7 @@ class ItemTest(BaseTest):
 
                 self.assertEqual(r.status_code, 201)
                 self.assertEqual(ItemModel.find_by_name('test').price, 17.99)
-                self.assertDictEqual(d1={'name': 'test', 'price': 17.99},
+                self.assertDictEqual(d1={'id':1,'name': 'test', 'price': 17.99},
                                      d2=json.loads(r.data))
 
     def test_create_duplicate_item(self):
